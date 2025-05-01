@@ -53,6 +53,7 @@ $prestiti_per_mese = [
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BiblioTech - Rapporti e Statistiche</title>
   <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/guide.css">
 </head>
 
 <body>
@@ -273,6 +274,7 @@ $prestiti_per_mese = [
   </div>
 
   <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/guide.js"></script>
 </body>
 
 </html>

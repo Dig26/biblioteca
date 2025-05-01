@@ -79,6 +79,7 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BiblioTech - Gestione Prestiti</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/guide.css">
 </head>
 
 <body>
@@ -332,6 +333,7 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
   </div>
 
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/guide.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const tabs = document.querySelectorAll('.tab');

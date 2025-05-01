@@ -4,8 +4,8 @@ include 'php/config.php';
 $id_opera = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 if ($id_opera == 0) {
-    header("Location: catalogo.php");
-    exit;
+  header("Location: catalogo.php");
+  exit;
 }
 
 // Recupera i dettagli dell'opera
@@ -13,11 +13,11 @@ $opera = null;
 $sql = "SELECT * FROM opera WHERE id_opera = $id_opera";
 $result = $conn->query($sql);
 if ($result && $result->num_rows > 0) {
-    $opera = $result->fetch_assoc();
+  $opera = $result->fetch_assoc();
 } else {
-    // Opera non trovata, reindirizza al catalogo
-    header("Location: catalogo.php");
-    exit;
+  // Opera non trovata, reindirizza al catalogo
+  header("Location: catalogo.php");
+  exit;
 }
 
 // Recupera le edizioni dell'opera
@@ -30,9 +30,9 @@ $sql_edizioni = "SELECT e.*, c.nome as collana, ed.nome as editore
                 ORDER BY e.anno DESC";
 $result_edizioni = $conn->query($sql_edizioni);
 if ($result_edizioni && $result_edizioni->num_rows > 0) {
-    while ($row = $result_edizioni->fetch_assoc()) {
-        $edizioni[] = $row;
-    }
+  while ($row = $result_edizioni->fetch_assoc()) {
+    $edizioni[] = $row;
+  }
 }
 
 // Recupera gli esemplari disponibili di quest'opera
@@ -48,9 +48,9 @@ $sql_esemplari = "SELECT es.Id_esemplare, v.n_volume, e.anno, c.nome as collana,
                  ORDER BY es.Id_esemplare";
 $result_esemplari = $conn->query($sql_esemplari);
 if ($result_esemplari && $result_esemplari->num_rows > 0) {
-    while ($row = $result_esemplari->fetch_assoc()) {
-        $esemplari[] = $row;
-    }
+  while ($row = $result_esemplari->fetch_assoc()) {
+    $esemplari[] = $row;
+  }
 }
 
 // Altre opere dello stesso autore
@@ -62,19 +62,22 @@ $sql_altre = "SELECT * FROM opera
              LIMIT 4";
 $result_altre = $conn->query($sql_altre);
 if ($result_altre && $result_altre->num_rows > 0) {
-    while ($row = $result_altre->fetch_assoc()) {
-        $altre_opere[] = $row;
-    }
+  while ($row = $result_altre->fetch_assoc()) {
+    $altre_opere[] = $row;
+  }
 }
 ?>
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BiblioTech - <?php echo htmlspecialchars($opera['titolo']); ?></title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/guide.css">
 </head>
+
 <body>
   <div class="layout">
     <!-- Sidebar navigation -->
@@ -173,31 +176,31 @@ if ($result_altre && $result_altre->num_rows > 0) {
               <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>
             </svg>
           </div>
-          
+
           <?php if (count($esemplari) > 0): ?>
-          <div style="margin-top: 1rem;">
-            <a href="prestiti.php?opera_id=<?php echo $id_opera; ?>" class="btn btn-primary" style="width: 100%;">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M17 6.1H3"></path>
-                <path d="M21 12.1H3"></path>
-                <path d="M15.1 18H3"></path>
-              </svg>
-              Presta un esemplare
-            </a>
-          </div>
+            <div style="margin-top: 1rem;">
+              <a href="prestiti.php?opera_id=<?php echo $id_opera; ?>" class="btn btn-primary" style="width: 100%;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 6.1H3"></path>
+                  <path d="M21 12.1H3"></path>
+                  <path d="M15.1 18H3"></path>
+                </svg>
+                Presta un esemplare
+              </a>
+            </div>
           <?php endif; ?>
         </div>
-        
+
         <div style="flex: 1; min-width: 300px;">
           <div style="margin-bottom: 2rem;">
             <h2 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Informazioni sull'Opera</h2>
             <div style="display: grid; grid-template-columns: 150px 1fr; gap: 0.5rem; margin-top: 1rem;">
               <div style="font-weight: 500;">Autore:</div>
               <div><?php echo htmlspecialchars($opera['autore']); ?></div>
-              
+
               <div style="font-weight: 500;">Anno prima pubblicazione:</div>
               <div><?php echo $opera['anno_prima_pub']; ?></div>
-              
+
               <div style="font-weight: 500;">Esemplari disponibili:</div>
               <div>
                 <?php if (count($esemplari) > 0): ?>
@@ -208,7 +211,7 @@ if ($result_altre && $result_altre->num_rows > 0) {
               </div>
             </div>
           </div>
-          
+
           <div>
             <h2 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Edizioni disponibili</h2>
             <?php if (count($edizioni) > 0): ?>
@@ -239,77 +242,79 @@ if ($result_altre && $result_altre->num_rows > 0) {
 
       <!-- Esemplari disponibili -->
       <?php if (count($esemplari) > 0): ?>
-      <div class="section">
-        <div class="section-header">
-          <h2 class="section-title">Esemplari Disponibili</h2>
-        </div>
-        
-        <div class="table-container">
-          <table>
-            <thead>
-              <tr>
-                <th>N° Inventario</th>
-                <th>N° Volume</th>
-                <th>Anno Edizione</th>
-                <th>Collana</th>
-                <th>Editore</th>
-                <th>Azioni</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php foreach ($esemplari as $esemplare): ?>
+        <div class="section">
+          <div class="section-header">
+            <h2 class="section-title">Esemplari Disponibili</h2>
+          </div>
+
+          <div class="table-container">
+            <table>
+              <thead>
                 <tr>
-                  <td><?php echo $esemplare['Id_esemplare']; ?></td>
-                  <td><?php echo $esemplare['n_volume']; ?></td>
-                  <td><?php echo $esemplare['anno']; ?></td>
-                  <td><?php echo htmlspecialchars($esemplare['collana']); ?></td>
-                  <td><?php echo htmlspecialchars($esemplare['editore']); ?></td>
-                  <td>
-                    <a href="prestiti.php?esemplare_id=<?php echo $esemplare['Id_esemplare']; ?>" class="btn btn-sm btn-primary">Presta</a>
-                  </td>
+                  <th>N° Inventario</th>
+                  <th>N° Volume</th>
+                  <th>Anno Edizione</th>
+                  <th>Collana</th>
+                  <th>Editore</th>
+                  <th>Azioni</th>
                 </tr>
-              <?php endforeach; ?>
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                <?php foreach ($esemplari as $esemplare): ?>
+                  <tr>
+                    <td><?php echo $esemplare['Id_esemplare']; ?></td>
+                    <td><?php echo $esemplare['n_volume']; ?></td>
+                    <td><?php echo $esemplare['anno']; ?></td>
+                    <td><?php echo htmlspecialchars($esemplare['collana']); ?></td>
+                    <td><?php echo htmlspecialchars($esemplare['editore']); ?></td>
+                    <td>
+                      <a href="prestiti.php?esemplare_id=<?php echo $esemplare['Id_esemplare']; ?>" class="btn btn-sm btn-primary">Presta</a>
+                    </td>
+                  </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
       <?php endif; ?>
 
       <!-- Altre opere dell'autore -->
       <?php if (count($altre_opere) > 0): ?>
-      <div class="section">
-        <div class="section-header">
-          <h2 class="section-title">Altre opere di <?php echo htmlspecialchars($opera['autore']); ?></h2>
-        </div>
-        
-        <div class="card-grid">
-          <?php foreach ($altre_opere as $altra_opera): ?>
-            <div class="book-card">
-              <div class="book-cover">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" style="width: 80px; height: 80px;">
-                  <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>
-                </svg>
-              </div>
-              <div class="book-info">
-                <div class="book-title"><?php echo htmlspecialchars($altra_opera['titolo']); ?></div>
-                <div class="book-author"><?php echo htmlspecialchars($altra_opera['autore']); ?></div>
-                <div class="book-meta">
-                  <span><?php echo $altra_opera['anno_prima_pub']; ?></span>
+        <div class="section">
+          <div class="section-header">
+            <h2 class="section-title">Altre opere di <?php echo htmlspecialchars($opera['autore']); ?></h2>
+          </div>
+
+          <div class="card-grid">
+            <?php foreach ($altre_opere as $altra_opera): ?>
+              <div class="book-card">
+                <div class="book-cover">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" style="width: 80px; height: 80px;">
+                    <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>
+                  </svg>
                 </div>
-                <div class="book-actions">
-                  <a href="opera.php?id=<?php echo $altra_opera['id_opera']; ?>" class="book-btn">
-                    Dettagli
-                  </a>
+                <div class="book-info">
+                  <div class="book-title"><?php echo htmlspecialchars($altra_opera['titolo']); ?></div>
+                  <div class="book-author"><?php echo htmlspecialchars($altra_opera['autore']); ?></div>
+                  <div class="book-meta">
+                    <span><?php echo $altra_opera['anno_prima_pub']; ?></span>
+                  </div>
+                  <div class="book-actions">
+                    <a href="opera.php?id=<?php echo $altra_opera['id_opera']; ?>" class="book-btn">
+                      Dettagli
+                    </a>
+                  </div>
                 </div>
               </div>
-            </div>
-          <?php endforeach; ?>
+            <?php endforeach; ?>
+          </div>
         </div>
-      </div>
       <?php endif; ?>
     </main>
   </div>
 
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/guide.js"></script>
 </body>
+
 </html>

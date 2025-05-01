@@ -140,6 +140,7 @@ function buildPageUrl($page)
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BiblioTech - Catalogo</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/guide.css">
 </head>
 
 <body>
@@ -327,13 +328,12 @@ function buildPageUrl($page)
           <?php foreach ($opere as $opera):
             // Verifico se ci sono esemplari disponibili per questa opera
             $sql_disponibile = "SELECT COUNT(es.Id_esemplare) as disponibili
-                              FROM esemplare es
-                              JOIN volume v ON es.id_volume = v.id_volume
-                              JOIN edizione ed ON v.id_edizione = ed.id_edizione
-                              WHERE ed.id_opera = {$opera['id_opera']} 
-                              AND es.Id_esemplare NOT IN (
-                                  SELECT id_esemplare FROM prestito WHERE id_prestito IS NOT NULL
-                              )";
+                  FROM esemplare es
+                  JOIN volume v ON es.id_volume = v.id_volume
+                  JOIN edizione ed ON v.id_edizione = ed.id_edizione
+                  LEFT JOIN prestito p ON es.Id_esemplare = p.id_esemplare
+                  WHERE ed.id_opera = {$opera['id_opera']} 
+                  AND p.id_prestito IS NULL";
             $result_disponibile = $conn->query($sql_disponibile);
             $esemplari_disponibili = ($result_disponibile && $result_disponibile->num_rows > 0) ? $result_disponibile->fetch_assoc()['disponibili'] : 0;
 
@@ -451,6 +451,7 @@ function buildPageUrl($page)
 
   <script src="assets/js/main.js"></script>
   <script src="assets/js/catalogo.js"></script>
+  <script src="assets/js/guide.js"></script>
   <script>
     // Gestione del reset dei filtri
     document.getElementById('reset-filters').addEventListener('click', function() {
