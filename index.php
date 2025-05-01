@@ -52,7 +52,6 @@ $ultima_data = date("d M Y");
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BiblioTech - Sistema di Gestione Biblioteca</title>
   <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/guide.css">
 </head>
 
 <body>
@@ -150,23 +149,7 @@ $ultima_data = date("d M Y");
           </form>
         </div>
       </div>
-      <div class="guide-buttons">
-        <button id="start-guide-btn" class="guide-btn guide-btn-primary">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"></circle>
-            <polyline points="12 6 12 12 16 14"></polyline>
-          </svg>
-          Inizia la Guida Interattiva
-        </button>
-        <button id="stop-guide-btn" class="guide-btn guide-btn-secondary">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="15" y1="9" x2="9" y2="15"></line>
-            <line x1="9" y1="9" x2="15" y2="15"></line>
-          </svg>
-          Disattiva Guida
-        </button>
-      </div>
+      
       <!-- Stats overview -->
       <div class="stats-grid">
         <div class="stat-card">
@@ -406,7 +389,6 @@ $ultima_data = date("d M Y");
     </main>
   </div>
   <script src="assets/js/main.js"></script>
-  <script src="assets/js/guide.js"></script>
 </body>
 
 </html>

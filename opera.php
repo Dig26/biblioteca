@@ -75,7 +75,6 @@ if ($result_altre && $result_altre->num_rows > 0) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BiblioTech - <?php echo htmlspecialchars($opera['titolo']); ?></title>
   <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/guide.css">
 </head>
 
 <body>
@@ -314,7 +313,6 @@ if ($result_altre && $result_altre->num_rows > 0) {
   </div>
 
   <script src="assets/js/main.js"></script>
-  <script src="assets/js/guide.js"></script>
 </body>
 
 </html>

@@ -69,7 +69,6 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BiblioTech - Gestione Utenti</title>
   <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/guide.css">
 </head>
 <body>
   <div class="layout">
@@ -330,7 +329,6 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
   </div>
 
   <script src="assets/js/main.js"></script>
-  <script src="assets/js/guide.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const tabs = document.querySelectorAll('.tab');
@@ -440,7 +438,5 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
       showTab('lista-utenti');
     });
   </script>
-  <link rel="stylesheet" href="assets/css/guide-pages-fix.css">
-  <script src="assets/js/guide-pages-fix.js"></script>
 </body>
 </html>

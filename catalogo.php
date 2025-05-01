@@ -140,7 +140,6 @@ function buildPageUrl($page)
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BiblioTech - Catalogo</title>
   <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/guide.css">
 </head>
 
 <body>
@@ -451,7 +450,6 @@ function buildPageUrl($page)
 
   <script src="assets/js/main.js"></script>
   <script src="assets/js/catalogo.js"></script>
-  <script src="assets/js/guide.js"></script>
   <script>
     // Gestione del reset dei filtri
     document.getElementById('reset-filters').addEventListener('click', function() {
