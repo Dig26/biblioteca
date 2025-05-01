@@ -1,139 +1,153 @@
-/* Stile per la guida interattiva BiblioTech - Soluzione semplice */
+/* Stile migliorato per la guida interattiva BiblioTech */
 
 .guide-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 9000;
-  pointer-events: all; /* Blocca i clic su elementi non evidenziati */
-}
-
-.guide-tooltip {
-  position: absolute;
-  width: 350px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  padding: 20px;
-  z-index: 9005; /* Sopra a tutto */
-  pointer-events: auto; /* Il tooltip è interattivo */
-}
-
-.guide-tooltip-title {
-  font-size: 18px;
-  font-weight: bold;
-  margin-top: 0;
-  margin-bottom: 10px;
-  color: var(--primary);
-}
-
-.guide-tooltip-text {
-  font-size: 14px;
-  margin-bottom: 20px;
-  line-height: 1.5;
-}
-
-.guide-tooltip-buttons {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-}
-
-/* Stile per l'elemento evidenziato - SOLO BORDO, NESSUN OVERLAY */
-.guide-highlight {
-  position: relative !important;
-  z-index: 9002 !important;
-  box-shadow: 0 0 0 4px var(--primary), 0 0 15px 6px rgba(255, 255, 255, 0.8) !important;
-  border-radius: 4px !important;
-  pointer-events: auto !important;
-  cursor: not-allowed !important;
-  animation: pulsate-outline 2s infinite !important;
-  /* La parte importante: crea un "foro" nell'overlay */
-  background-clip: padding-box !important;
-}
-
-/* La parte chiave: rimuove l'overlay da sopra l'elemento selezionato */
-.guide-highlight::before {
-  content: "";
-  position: absolute;
-  top: -10px;
-  left: -10px;
-  right: -10px;
-  bottom: -10px;
-  background-color: transparent !important;
-  z-index: -1;
-}
-
-/* Impedisci i clic effettivi, ma permetti il passaggio degli eventi hover */
-.guide-highlight a,
-.guide-highlight button,
-.guide-highlight input,
-.guide-highlight select,
-.guide-highlight [role="button"],
-.guide-highlight [tabindex="0"] {
-  pointer-events: none !important; /* Impedisce i clic sui controlli interattivi */
-}
-
-/* Aggiungi un div invisibile sopra l'elemento che cattura i clic reali */
-.guide-click-blocker {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 9003;
-  cursor: not-allowed !important;
-}
-
-@keyframes pulsate-outline {
-  0% {
-    box-shadow: 0 0 0 4px var(--primary), 0 0 10px 6px rgba(255, 255, 255, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9000;
+    pointer-events: all; /* Blocca i clic su elementi non evidenziati */
   }
-  50% {
-    box-shadow: 0 0 0 4px var(--primary), 0 0 20px 10px rgba(255, 255, 255, 0.8);
+  
+  .guide-tooltip {
+    position: absolute;
+    width: 350px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    z-index: 9005; /* Sopra a tutto */
+    pointer-events: auto; /* Il tooltip è interattivo */
   }
-  100% {
-    box-shadow: 0 0 0 4px var(--primary), 0 0 10px 6px rgba(255, 255, 255, 0.5);
+  
+  .guide-tooltip-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--primary);
   }
-}
-
-/* Pulsanti della guida nella home */
-.guide-buttons {
-  margin-bottom: 20px;
-  display: flex;
-  gap: 10px;
-}
-
-.guide-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
-  border-radius: var(--radius);
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.guide-btn-primary {
-  background-color: var(--primary);
-  color: white;
-  border: none;
-}
-
-.guide-btn-primary:hover {
-  background-color: var(--primary-dark);
-}
-
-.guide-btn-secondary {
-  background-color: var(--gray-200);
-  color: var(--gray-700);
-  border: 1px solid var(--gray-300);
-}
-
-.guide-btn-secondary:hover {
-  background-color: var(--gray-300);
-}
+  
+  .guide-tooltip-text {
+    font-size: 14px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  
+  .guide-tooltip-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  /* Stile migliorato per l'elemento evidenziato per concentrarsi sul contenuto */
+  .guide-highlight {
+    position: relative !important;
+    z-index: 9002 !important;
+    box-shadow: 0 0 0 4px var(--primary), 0 0 15px 6px rgba(255, 255, 255, 0.8) !important;
+    border-radius: 4px !important;
+    pointer-events: auto !important;
+    cursor: default !important;
+    animation: pulsate-outline 2s infinite !important;
+    /* La parte importante: crea un "foro" nell'overlay */
+    background-clip: padding-box !important;
+    outline: none !important;
+  }
+  
+  /* Stile supplementare per evidenziare meglio il contenuto delle tabelle */
+  .table-container.guide-highlight,
+  .table-container.guide-highlight table {
+    z-index: 9002 !important;
+    pointer-events: auto !important;
+  }
+  
+  /* Stile supplementare per sezioni intere */
+  .section.guide-highlight {
+    box-shadow: 0 0 0 5px var(--primary), 0 0 20px 10px rgba(255, 255, 255, 0.9) !important;
+  }
+  
+  /* La parte chiave: rimuove l'overlay da sopra l'elemento selezionato */
+  .guide-highlight::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background-color: transparent !important;
+    z-index: -1;
+  }
+  
+  /* Impedisci i clic effettivi sugli elementi interattivi, ma permetti la visibilità */
+  .guide-highlight a,
+  .guide-highlight button,
+  .guide-highlight input,
+  .guide-highlight select,
+  .guide-highlight [role="button"],
+  .guide-highlight [tabindex="0"] {
+    pointer-events: none !important; /* Impedisce i clic sui controlli interattivi */
+  }
+  
+  /* Aggiungi un div invisibile sopra l'elemento che cattura i clic reali */
+  .guide-click-blocker {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9003;
+    cursor: default !important;
+  }
+  
+  @keyframes pulsate-outline {
+    0% {
+      box-shadow: 0 0 0 4px var(--primary), 0 0 10px 6px rgba(255, 255, 255, 0.5);
+    }
+    50% {
+      box-shadow: 0 0 0 4px var(--primary), 0 0 20px 10px rgba(255, 255, 255, 0.8);
+    }
+    100% {
+      box-shadow: 0 0 0 4px var(--primary), 0 0 10px 6px rgba(255, 255, 255, 0.5);
+    }
+  }
+  
+  /* Pulsanti della guida nella home */
+  .guide-buttons {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .guide-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: var(--radius);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .guide-btn-primary {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+  }
+  
+  .guide-btn-primary:hover {
+    background-color: var(--primary-dark);
+  }
+  
+  .guide-btn-secondary {
+    background-color: var(--gray-200);
+    color: var(--gray-700);
+    border: 1px solid var(--gray-300);
+  }
+  
+  .guide-btn-secondary:hover {
+    background-color: var(--gray-300);
+  }
+  

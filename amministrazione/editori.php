@@ -382,4 +382,6 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
       showTab('lista-editori');
     });
   </script>
+  <link rel="stylesheet" href="../assets/css/guide-pages-fix.css">
+  <script src="../assets/js/guide-pages-fix.js"></script>
 </body>
